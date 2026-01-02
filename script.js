@@ -63,11 +63,19 @@ function showFamilyDetails(familyId) {
     document.getElementById('detailsTitle').textContent = family.name;
     const detailsDiv = document.getElementById('familyDetails');
 
+    const ballStatusText = family.ballStatus === 'taked' ? 'أخذ كرة' : 'لم يأخذ كرة';
+    const ballDateText = family.ballDate ? `<p><strong>تاريخ أخذ الكرة:</strong> ${family.ballDate}</p>` : '';
+    const ballNotesText = family.ballNotes ? `<p><strong>ملاحظات:</strong> ${family.ballNotes}</p>` : '';
+
     detailsDiv.innerHTML = `
         <h3>معلومات العائلة</h3>
         <p><strong>الاسم:</strong> ${family.name}</p>
         <p><strong>المنطقة:</strong> ${family.area}</p>
         <p><strong>العنوان:</strong> ${family.address}</p>
+        <h3>تفاصيل الكرة</h3>
+        <p><strong>حالة الكرة:</strong> ${ballStatusText}</p>
+        ${ballDateText}
+        ${ballNotesText}
         <h3>أعضاء العائلة</h3>
         ${family.members.map(member => `
             <div class="member">
@@ -107,6 +115,16 @@ function editFamily(familyId) {
     document.getElementById('familyName').value = family.name;
     document.getElementById('area').value = family.area;
     document.getElementById('address').value = family.address;
+
+    // Populate ball details
+    if (family.ballStatus) {
+        document.querySelector(`input[name="ballStatus"][value="${family.ballStatus}"]`).checked = true;
+        if (family.ballStatus === 'taked') {
+            document.getElementById('ballDateGroup').style.display = 'block';
+            document.getElementById('ballDate').value = family.ballDate || '';
+        }
+    }
+    document.getElementById('ballNotes').value = family.ballNotes || '';
 
     // Clear existing members and add current ones
     membersContainer.innerHTML = '<h3>Family Members</h3>';
@@ -218,11 +236,19 @@ function handleFormSubmit(e) {
         return;
     }
 
+    // Collect ball details
+    const ballStatus = document.querySelector('input[name="ballStatus"]:checked')?.value || 'notTaked';
+    const ballDate = ballStatus === 'taked' ? document.getElementById('ballDate').value : null;
+    const ballNotes = document.getElementById('ballNotes').value.trim();
+
     const familyData = {
         id: currentEditingId || generateId(),
         name: familyName,
         area,
         address,
+        ballStatus,
+        ballDate,
+        ballNotes: ballNotes || null,
         members
     };
 
@@ -329,4 +355,20 @@ function setupEventListeners() {
             resetForm();
         };
     });
+
+    // Ball status radio button event listeners
+    const ballTakedRadio = document.getElementById('ballTaked');
+    const ballNotTakedRadio = document.getElementById('ballNotTaked');
+    const ballDateGroup = document.getElementById('ballDateGroup');
+
+    function toggleBallDate() {
+        if (ballTakedRadio.checked) {
+            ballDateGroup.style.display = 'block';
+        } else {
+            ballDateGroup.style.display = 'none';
+        }
+    }
+
+    ballTakedRadio.addEventListener('change', toggleBallDate);
+    ballNotTakedRadio.addEventListener('change', toggleBallDate);
 }
