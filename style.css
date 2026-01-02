@@ -210,24 +210,25 @@ main {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     font-weight: 500;
     color: #3e2723;
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border: 1px solid #a1887f;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
     transition: border-color 0.3s ease;
 }
 
@@ -366,6 +367,26 @@ main {
         font-size: 1.2rem;
     }
 
+    .search-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .search-container select,
+    .search-container input {
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .search-container button {
+        padding: 8px 12px;
+        font-size: 14px;
+        align-self: center;
+        min-width: 120px;
+    }
+
     main {
         padding: 0.5rem;
     }
@@ -381,16 +402,20 @@ main {
         padding: 0.8rem;
     }
 
+    .form-group {
+        margin-bottom: 0.6rem;
+    }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
-        font-size: 0.9rem;
-        padding: 0.6rem;
+        font-size: 0.85rem;
+        padding: 0.5rem;
     }
 
     .btn-primary, .btn-secondary, .btn-danger {
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.8rem;
         margin: 0.2rem 0;
     }
 
@@ -404,5 +429,16 @@ main {
 
     .family-card p {
         font-size: 0.85rem;
+    }
+
+    .member {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .removeMemberBtn {
+        width: 25px;
+        height: 25px;
+        font-size: 0.7rem;
     }
 }
