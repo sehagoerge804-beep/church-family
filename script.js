@@ -26,6 +26,8 @@ function loadFamilies() {
     displayFamilies();
 }
 
+
+
 // Save families to localStorage
 function saveFamilies() {
     localStorage.setItem('churchFamilies', JSON.stringify(families));
@@ -46,10 +48,13 @@ function createFamilyCard(family) {
     card.className = 'family-card';
     card.onclick = () => showFamilyDetails(family.id);
 
+    const mapIcon = hiddenIcons.map ? '' : '<i class="fas fa-map-marker-alt"></i>';
+    const usersIcon = hiddenIcons.users ? '' : '<i class="fas fa-users"></i>';
+
     card.innerHTML = `
         <h3>${family.name}</h3>
-        <p><i class="fas fa-map-marker-alt"></i> ${family.area}</p>
-        <p><i class="fas fa-users"></i> ${family.members.length} member${family.members.length !== 1 ? 's' : ''}</p>
+        <p>${mapIcon} ${family.area}</p>
+        <p>${usersIcon} ${family.members.length} member${family.members.length !== 1 ? 's' : ''}</p>
     `;
 
     return card;
@@ -66,6 +71,7 @@ function showFamilyDetails(familyId) {
     const ballStatusText = family.ballStatus === 'taked' ? 'أخذ بركة' : 'لم يأخذ بركة';
     const ballDateText = family.ballDate ? `<p><strong>تاريخ أخذ البركة:</strong> ${family.ballDate}</p>` : '';
     const ballNotesText = family.ballNotes ? `<p><strong>ملاحظات:</strong> ${family.ballNotes}</p>` : '';
+    const ballLocationText = family.ballLocation ? `<p><strong>موقع البركة:</strong> ${family.ballLocation}</p>` : '';
 
     detailsDiv.innerHTML = `
         <h3>معلومات العائلة</h3>
@@ -76,6 +82,7 @@ function showFamilyDetails(familyId) {
         <p><strong>حالة البركة:</strong> ${ballStatusText}</p>
         ${ballDateText}
         ${ballNotesText}
+        ${ballLocationText}
         <h3>أعضاء العائلة</h3>
         ${family.members.map(member => `
             <div class="member">
@@ -88,9 +95,8 @@ function showFamilyDetails(familyId) {
         `).join('')}
     `;
 
-    // Set up edit and delete buttons
+    // Set up edit button
     document.getElementById('editFamilyBtn').onclick = () => editFamily(family.id);
-    document.getElementById('deleteFamilyBtn').onclick = () => deleteFamily(family.id);
 
     detailsModal.style.display = 'block';
 }
@@ -125,6 +131,7 @@ function editFamily(familyId) {
         }
     }
     document.getElementById('ballNotes').value = family.ballNotes || '';
+    document.getElementById('ballLocation').value = family.ballLocation || '';
 
     // Clear existing members and add current ones
     membersContainer.innerHTML = '<h3>Family Members</h3>';
@@ -136,15 +143,7 @@ function editFamily(familyId) {
     familyModal.style.display = 'block';
 }
 
-// Delete family
-function deleteFamily(familyId) {
-    if (confirm('هل أنت متأكد من حذف هذه العائلة؟')) {
-        families = families.filter(f => f.id !== familyId);
-        saveFamilies();
-        displayFamilies();
-        detailsModal.style.display = 'none';
-    }
-}
+
 
 // Reset form
 function resetForm() {
@@ -240,6 +239,7 @@ function handleFormSubmit(e) {
     const ballStatus = document.querySelector('input[name="ballStatus"]:checked')?.value || 'notTaked';
     const ballDate = ballStatus === 'taked' ? document.getElementById('ballDate').value : null;
     const ballNotes = document.getElementById('ballNotes').value.trim();
+    const ballLocation = document.getElementById('ballLocation').value.trim();
 
     const familyData = {
         id: currentEditingId || generateId(),
@@ -249,6 +249,7 @@ function handleFormSubmit(e) {
         ballStatus,
         ballDate,
         ballNotes: ballNotes || null,
+        ballLocation: ballLocation || null,
         members
     };
 
