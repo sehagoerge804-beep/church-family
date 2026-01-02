@@ -260,7 +260,27 @@ main {
 }
 
 .radio-label input[type="radio"] {
-    margin: 0;
+    display: none;
+}
+
+.radio-label .fas.fa-check {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3e2723;
+    border-radius: 4px;
+    background-color: white;
+    color: white;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.radio-label input[type="radio"]:checked + .fas.fa-check {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
 }
 
 #membersContainer {

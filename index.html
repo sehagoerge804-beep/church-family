@@ -51,25 +51,29 @@
 
                 <!-- Ball Details Section -->
                 <div class="form-group">
-                    <label>تفاصيل الكرة:</label>
+                    <label>تفاصيل البركة:</label>
                     <div class="ball-options">
                         <label class="radio-label">
                             <input type="radio" name="ballStatus" value="taked" id="ballTaked">
-                            أخذ كرة
+                            <i class="fas fa-check"></i> أخذ بركة
                         </label>
                         <label class="radio-label">
                             <input type="radio" name="ballStatus" value="notTaked" id="ballNotTaked" checked>
-                            لم يأخذ كرة
+                            <i class="fas fa-check"></i> لم يأخذ بركة
                         </label>
                     </div>
                 </div>
                 <div class="form-group" id="ballDateGroup" style="display: none;">
-                    <label for="ballDate">تاريخ أخذ الكرة:</label>
+                    <label for="ballDate">تاريخ أخذ البركة:</label>
                     <input type="date" id="ballDate">
                 </div>
                 <div class="form-group">
                     <label for="ballNotes">ملاحظات إضافية:</label>
-                    <textarea id="ballNotes" placeholder="أدخل أي ملاحظات إضافية حول الكرة"></textarea>
+                    <textarea id="ballNotes" placeholder="أدخل أي ملاحظات إضافية حول البركة"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ballLocation">موقع البركة:</label>
+                    <input type="text" id="ballLocation" placeholder="أدخل موقع البركة">
                 </div>
                 <div id="membersContainer">
                     <h3>أعضاء العائلة</h3>
@@ -121,11 +125,12 @@
             </div>
             <div class="form-actions">
                 <button id="editFamilyBtn" class="btn-primary">تعديل العائلة</button>
-                <button id="deleteFamilyBtn" class="btn-danger">حذف العائلة</button>
                 <button id="closeDetailsBtn" class="btn-secondary">إغلاق</button>
             </div>
         </div>
     </div>
+
+
 
     <script src="script.js"></script>
 </body>
