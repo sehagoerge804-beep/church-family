@@ -63,8 +63,8 @@ function showFamilyDetails(familyId) {
     document.getElementById('detailsTitle').textContent = family.name;
     const detailsDiv = document.getElementById('familyDetails');
 
-    const ballStatusText = family.ballStatus === 'taked' ? 'أخذ كرة' : 'لم يأخذ كرة';
-    const ballDateText = family.ballDate ? `<p><strong>تاريخ أخذ الكرة:</strong> ${family.ballDate}</p>` : '';
+    const ballStatusText = family.ballStatus === 'taked' ? 'أخذ بركة' : 'لم يأخذ بركة';
+    const ballDateText = family.ballDate ? `<p><strong>تاريخ أخذ البركة:</strong> ${family.ballDate}</p>` : '';
     const ballNotesText = family.ballNotes ? `<p><strong>ملاحظات:</strong> ${family.ballNotes}</p>` : '';
 
     detailsDiv.innerHTML = `
@@ -72,8 +72,8 @@ function showFamilyDetails(familyId) {
         <p><strong>الاسم:</strong> ${family.name}</p>
         <p><strong>المنطقة:</strong> ${family.area}</p>
         <p><strong>العنوان:</strong> ${family.address}</p>
-        <h3>تفاصيل الكرة</h3>
-        <p><strong>حالة الكرة:</strong> ${ballStatusText}</p>
+        <h3>تفاصيل البركة</h3>
+        <p><strong>حالة البركة:</strong> ${ballStatusText}</p>
         ${ballDateText}
         ${ballNotesText}
         <h3>أعضاء العائلة</h3>
