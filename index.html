@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة عائلات الكنيسة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-church"></i> إدارة عائلات الكنيسة</h1>
+        <div class="search-container">
+            <select id="searchType" title="اختر نوع البحث">
+                <option value="all">البحث في الكل</option>
+                <option value="name">البحث بالاسم</option>
+                <option value="area">البحث بالمنطقة</option>
+                <option value="phone">البحث برقم الهاتف</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="أدخل نص البحث">
+            <button id="searchBtn" class="btn-secondary"><i class="fas fa-search"></i> بحث</button>
+        </div>
+        <button id="addFamilyBtn" class="btn-primary"><i class="fas fa-plus"></i> إضافة عائلة</button>
+    </header>
+
+    <main>
+        <div id="familyList" class="family-grid">
+            <!-- Family cards will be dynamically added here -->
+        </div>
+    </main>
+
+    <!-- Modal for Add/Edit Family -->
+    <div id="familyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">إضافة عائلة</h2>
+            <form id="familyForm">
+                <div class="form-group">
+                    <label for="familyName">اسم العائلة:</label>
+                    <input type="text" id="familyName" placeholder="أدخل اسم العائلة" required>
+                </div>
+                <div class="form-group">
+                    <label for="area">المنطقة / المنطقة:</label>
+                    <input type="text" id="area" placeholder="أدخل المنطقة أو المنطقة" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">العنوان الكامل:</label>
+                    <textarea id="address" placeholder="أدخل العنوان الكامل" required></textarea>
+                </div>
+                <div id="membersContainer">
+                    <h3>أعضاء العائلة</h3>
+                    <div class="member" data-index="0">
+                        <div class="form-group">
+                            <label>الاسم:</label>
+                            <input type="text" class="memberName" placeholder="أدخل اسم العضو" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الدور:</label>
+                            <select class="memberRole" title="اختر دور العضو" required>
+                                <option value="father">الأب</option>
+                                <option value="mother">الأم</option>
+                                <option value="son">الابن</option>
+                                <option value="daughter">الابنة</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف:</label>
+                            <input type="tel" class="memberPhone" placeholder="أدخل رقم الهاتف">
+                        </div>
+                        <div class="form-group">
+                            <label>الرقم الوطني:</label>
+                            <input type="text" class="memberNationalId" placeholder="أدخل الرقم الوطني">
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الميلاد:</label>
+                            <input type="date" class="memberDob" placeholder="اختر تاريخ الميلاد">
+                        </div>
+                        <button type="button" class="removeMemberBtn" title="إزالة العضو"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <button type="button" id="addMemberBtn" class="btn-secondary"><i class="fas fa-plus"></i> إضافة عضو</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">حفظ العائلة</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Family Details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="detailsTitle">تفاصيل العائلة</h2>
+            <div id="familyDetails">
+                <!-- Family details will be displayed here -->
+            </div>
+            <div class="form-actions">
+                <button id="editFamilyBtn" class="btn-primary">تعديل العائلة</button>
+                <button id="deleteFamilyBtn" class="btn-danger">حذف العائلة</button>
+                <button id="closeDetailsBtn" class="btn-secondary">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
