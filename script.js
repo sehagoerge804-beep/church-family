@@ -48,8 +48,8 @@ function createFamilyCard(family) {
     card.className = 'family-card';
     card.onclick = () => showFamilyDetails(family.id);
 
-    const mapIcon = hiddenIcons.map ? '' : '<i class="fas fa-map-marker-alt"></i>';
-    const usersIcon = hiddenIcons.users ? '' : '<i class="fas fa-users"></i>';
+    const mapIcon = '<i class="fas fa-map-marker-alt"></i>';
+    const usersIcon = '<i class="fas fa-users"></i>';
 
     card.innerHTML = `
         <h3>${family.name}</h3>
@@ -98,6 +98,9 @@ function showFamilyDetails(familyId) {
     // Set up edit button
     document.getElementById('editFamilyBtn').onclick = () => editFamily(family.id);
 
+    // Set up delete button
+    document.getElementById('deleteFamilyBtn').onclick = () => deleteFamily(family.id);
+
     detailsModal.style.display = 'block';
 }
 
@@ -143,7 +146,15 @@ function editFamily(familyId) {
     familyModal.style.display = 'block';
 }
 
-
+// Delete family
+function deleteFamily(familyId) {
+    if (confirm('هل أنت متأكد من حذف هذه العائلة؟')) {
+        families = families.filter(f => f.id !== familyId);
+        saveFamilies();
+        displayFamilies();
+        detailsModal.style.display = 'none';
+    }
+}
 
 // Reset form
 function resetForm() {
