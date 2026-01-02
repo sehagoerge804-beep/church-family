@@ -244,6 +244,25 @@ main {
     min-height: 80px;
 }
 
+.ball-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #3e2723;
+}
+
+.radio-label input[type="radio"] {
+    margin: 0;
+}
+
 #membersContainer {
     margin-top: 1rem;
     padding: 1rem;
