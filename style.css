@@ -7,29 +7,46 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #f4f1e8 0%, #e8d5b7 100%);
-    color: #2c1810;
+    background: linear-gradient(135deg, #fef8e1 0%, #deb887 50%, #f4e4bc 100%);
+    color: #3e2723;
     line-height: 1.6;
     position: relative;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 
 
 header {
-    background: linear-gradient(135deg, #8d6e63 0%, #6d4c41 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #daa520 100%);
     color: white;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-bottom: 3px solid #5d4037;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.1);
+    border-bottom: 4px solid #daa520;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.05"/><circle cx="10" cy="90" r="0.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
 }
 
 header h1 {
     margin-bottom: 0.5rem;
-    font-size: 2rem;
-    font-weight: 300;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 1;
 }
 
 .search-container {
@@ -71,52 +88,193 @@ header h1 {
 }
 
 .btn-primary, .btn-secondary, .btn-danger {
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 25px;
     cursor: pointer !important;
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     opacity: 1 !important;
     pointer-events: auto !important;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(0);
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn-primary::before, .btn-secondary::before, .btn-danger::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before, .btn-secondary:hover::before, .btn-danger:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #5d4037 0%, #4e342e 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #daa520 100%);
     color: white;
+    position: relative;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::after {
+    left: 100%;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #4e342e 0%, #3e2723 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #daa520 0%, #a0522d 50%, #8b4513 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.3);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #a1887f 0%, #8d6e63 100%);
+    background: linear-gradient(135deg, #6d4c41 0%, #8d6e63 50%, #a1887f 100%);
     color: white;
+    position: relative;
+}
+
+.btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-secondary:hover::after {
+    left: 100%;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #8d6e63 0%, #795548 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #a1887f 0%, #8d6e63 50%, #6d4c41 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(141, 110, 99, 0.3);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 50%, #e53935 100%);
     color: white;
+    position: relative;
+}
+
+.btn-danger::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-danger:hover::after {
+    left: 100%;
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 50%, #b71c1c 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(229, 57, 53, 0.3);
+}
+
+/* Styles for icons inside buttons */
+.btn-primary i, .btn-danger i {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* Icon-only buttons */
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin: 0.25rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Edit and Delete buttons in family cards */
+.edit-btn, .delete-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 50%, #388e3c 100%);
+    color: white;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 50%, #2e7d32 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 50%, #d32f2f 100%);
+    color: white;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 50%, #c62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Card actions container */
+.card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0d2c3;
 }
 
 main {
@@ -227,18 +385,23 @@ main {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.4rem;
-    border: 1px solid #a1887f;
-    border-radius: 4px;
+    padding: 0.6rem;
+    border: 2px solid #d7ccc8;
+    border-radius: 8px;
     font-size: 0.9rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #fafafa;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #5d4037;
+    border-color: #8d6e63;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.1), inset 0 1px 3px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
 }
 
 .form-group textarea {
@@ -361,6 +524,48 @@ main {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Apply animations */
+.family-card {
+    animation: slideUp 0.5s ease-out;
+}
+
+.family-card:nth-child(1) { animation-delay: 0.1s; }
+.family-card:nth-child(2) { animation-delay: 0.2s; }
+.family-card:nth-child(3) { animation-delay: 0.3s; }
+.family-card:nth-child(4) { animation-delay: 0.4s; }
+
+.modal-content {
+    animation: bounceIn 0.4s ease-out;
+}
+
+.form-group {
+    animation: slideUp 0.3s ease-out;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
 
 /* Responsive Design */
 @media (max-width: 768px) {
