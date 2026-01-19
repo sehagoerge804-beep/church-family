@@ -10,12 +10,11 @@
 </head>
 <body>
     <header>
-        <h1><i class="fas fa-pray" id="headerIcon" style="cursor: pointer;" title="Click to change icon"></i> إدارة عائلات الكنيسة</h1>
+        <h1><i class="fas fa-pray" id="headerIcon" style="cursor:pointer;" title="Click to change icon"></i> إدارة عائلات الكنيسة</h1>
         <div class="search-container">
             <select id="searchType" title="اختر نوع البحث">
                 <option value="all">البحث في الكل</option>
                 <option value="name">البحث بالاسم</option>
-                <option value="area">البحث بالمنطقة</option>
                 <option value="phone">البحث برقم الهاتف</option>
             </select>
             <input type="text" id="searchInput" placeholder="أدخل نص البحث">
@@ -24,107 +23,42 @@
     </header>
 
     <main>
-        <div id="familyFormContainer" style="display: none;">
-            <h2 id="formTitle">إضافة عائلة</h2>
-            <form id="familyForm">
-                <div class="form-group">
-                    <label for="familyName">اسم العائلة:</label>
-                    <input type="text" id="familyName" placeholder="أدخل اسم العائلة" required>
-                </div>
-                <div class="form-group">
-                    <label for="area">المنطقة / المنطقة:</label>
-                    <input type="text" id="area" placeholder="أدخل المنطقة أو المنطقة" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">العنوان الكامل:</label>
-                    <textarea id="address" placeholder="أدخل العنوان الكامل" required></textarea>
-                </div>
+        <!-- الفورم -->
+        <form id="familyForm" style="display:none;">
+          <label for="name">الاسم:</label>
+          <input type="text" id="name" placeholder="اكتب الاسم" required>
 
-                <!-- Ball Details Section -->
-                <div class="form-group">
-                    <label>تفاصيل البركة:</label>
-                    <div class="ball-options">
-                        <label class="radio-label">
-                            <input type="radio" name="ballStatus" value="taked" id="ballTaked">
-                            <i class="fas fa-check"></i> أخذ بركة
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="ballStatus" value="notTaked" id="ballNotTaked" checked>
-                            <i class="fas fa-check"></i> لم يأخذ بركة
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group" id="ballDateGroup" style="display: none;">
-                    <label for="ballDate">تاريخ أخذ البركة:</label>
-                    <input type="date" id="ballDate">
-                </div>
-                <div class="form-group">
-                    <label for="ballNotes">ملاحظات إضافية:</label>
-                    <textarea id="ballNotes" placeholder="أدخل أي ملاحظات إضافية حول البركة"></textarea>
-                </div>
-               
-              
-                <div id="membersContainer">
-                    <h3>أعضاء العائلة</h3>
-                    <div class="member" data-index="0">
-                        <div class="form-group">
-                            <label>الاسم:</label>
-                            <input type="text" class="memberName" placeholder="أدخل اسم العضو" required>
-                        </div>
-                        <div class="form-group">
-                            <label>الدور:</label>
-                            <select class="memberRole" title="اختر دور العضو" required>
-                                <option value="father">الأب</option>
-                                <option value="mother">الأم</option>
-                                <option value="son">الابن</option>
-                                <option value="daughter">الابنة</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>رقم الهاتف:</label>
-                            <input type="tel" class="memberPhone" placeholder="أدخل رقم الهاتف">
-                        </div>
-                        <div class="form-group">
-                            <label>الرقم الوطني:</label>
-                            <input type="text" class="memberNationalId" placeholder="أدخل الرقم الوطني">
-                        </div>
-                        <div class="form-group">
-                            <label>تاريخ الميلاد:</label>
-                            <input type="date" class="memberDob" placeholder="اختر تاريخ الميلاد">
-                        </div>
-                        <button type="button" class="removeMemberBtn" title="إزالة العضو"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary"><i class="fas fa-save"></i> حفظ العائلة</button>
-                    <button type="button" id="cancelBtn" class="btn-secondary">إلغاء</button>
-                </div>
-            </form>
-        </div>
+          <label for="address">العنوان:</label>
+          <input type="text" id="address" placeholder="اكتب العنوان" required>
 
+          <label for="phone">رقم التليفون:</label>
+          <input type="text" id="phone" placeholder="اكتب رقم التليفون" required>
+
+          <label for="members">عدد الأفراد (اختياري):</label>
+          <input type="number" id="members" placeholder="عدد الأفراد">
+
+          <label for="confessionFather">اب الاعتراف:</label>
+          <input type="text" id="confessionFather" placeholder="اكتب اسم الاب الاعتراف" required>
+
+          <label>اخد بركة / لم ياخد:</label>
+          <input type="radio" name="blessing" value="Received" required> اخد بركة
+          <input type="radio" name="blessing" value="Not Received" required> لم ياخد
+
+          <label for="blessingDate">تاريخ البركة:</label>
+          <input type="date" id="blessingDate">
+
+          <div class="form-buttons">
+              <button type="submit" id="saveBtn">حفظ</button>
+              <button type="button" id="cancelBtn">إلغاء</button>
+          </div>
+        </form>
+
+        <!-- عرض الأيقونات -->
         <div id="familyList" class="family-grid">
-            <!-- Family cards will be dynamically added here -->
+            <!-- Family cards ستضاف ديناميكياً هنا -->
         </div>
     </main>
 
-    <!-- Modal for Family Details -->
-    <div id="detailsModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="detailsTitle">تفاصيل العائلة</h2>
-            <div id="familyDetails">
-                <!-- Family details will be displayed here -->
-            </div>
-            <div class="form-actions">
-                <button id="editFamilyBtn" class="btn-icon btn-primary" title="تعديل العائلة"><i class="fas fa-edit"></i></button>
-                <button id="deleteFamilyBtn" class="btn-icon btn-danger" title="حذف العائلة"><i class="fas fa-trash"></i></button>
-                <button id="closeDetailsBtn" class="btn-secondary">إغلاق</button>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
