@@ -47,7 +47,7 @@ form.addEventListener("submit", async (e)=>{
     } catch(err){ console.error("Error:",err); }
 });
 
-// Load families on page load
+// Load families
 async function loadFamilies(){
     familyList.innerHTML="";
     try {
@@ -86,7 +86,6 @@ function editFamily(id,family){
     document.querySelector(input[name="blessing"][value="${family.blessing}"]).checked=true;
     document.getElementById("blessingDate").value=family.blessingDate;
 
-    // Override submit
     form.onsubmit = async (e)=>{
         e.preventDefault();
         const updatedData = {
@@ -102,7 +101,7 @@ function editFamily(id,family){
         form.reset();
         form.style.display="none";
         loadFamilies();
-        form.onsubmit=null; // Reset to original
+        form.onsubmit=null;
     };
 }
 
@@ -129,3 +128,63 @@ searchInput.addEventListener("input",()=>{
         else if(type==="all" && (name.includes(query)||phone.includes(query))) card.style.display="block";
     });
 });
+
+
+// =================================================
+// ====== إضافة / حذف أعضاء العائلة (NEW) ======
+// =================================================
+
+const membersContainer = document.getElementById("membersContainer");
+const addMemberBtn = document.getElementById("addMemberBtn");
+
+if (addMemberBtn && membersContainer) {
+
+    addMemberBtn.addEventListener("click", () => {
+        const memberDiv = document.createElement("div");
+        memberDiv.className = "member";
+
+        memberDiv.innerHTML = `
+            <div class="form-group">
+                <label>الاسم:</label>
+                <input type="text" class="memberName" placeholder="أدخل اسم العضو" required>
+            </div>
+
+            <div class="form-group">
+                <label>الدور:</label>
+                <select class="memberRole" required>
+                    <option value="father">الأب</option>
+                    <option value="mother">الأم</option>
+                    <option value="son">الابن</option>
+                    <option value="daughter">الابنة</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>رقم الهاتف:</label>
+                <input type="tel" class="memberPhone" placeholder="أدخل رقم الهاتف">
+            </div>
+
+            <div class="form-group">
+                <label>الرقم الوطني:</label>
+                <input type="text" class="memberNationalId" placeholder="أدخل الرقم الوطني">
+            </div>
+
+            <div class="form-group">
+                <label>تاريخ الميلاد:</label>
+                <input type="date" class="memberDob">
+            </div>
+
+            <button type="button" class="removeMemberBtn">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+
+        membersContainer.appendChild(memberDiv);
+    });
+
+    membersContainer.addEventListener("click", (e) => {
+        if (e.target.closest(".removeMemberBtn")) {
+            e.target.closest(".member").remove();
+        }
+    });
+}

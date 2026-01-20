@@ -19,3 +19,10 @@
 - [x] Make minor tweaks to index.html for improved form layout and spacing if needed
 - [x] Test updated design on different screen sizes for responsiveness
 - [x] Verify that all functionality remains intact after changes
+
+## New Tasks for Member Management
+- [ ] Add event listener to #addMemberBtn to add new member fields
+- [ ] Add event listeners to .removeMemberBtn to remove members
+- [ ] Update form submission to collect and save member data
+- [ ] Update editFamily function to populate member fields
+- [ ] Update family card display to show member count
