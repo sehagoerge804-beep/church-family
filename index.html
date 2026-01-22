@@ -16,6 +16,7 @@
                 <option value="all">البحث في الكل</option>
                 <option value="name">البحث بالاسم</option>
                 <option value="phone">البحث برقم الهاتف</option>
+                <option value="region">البحث بالمنطقة</option>
             </select>
             <input type="text" id="searchInput" placeholder="أدخل نص البحث">
         </div>
@@ -31,6 +32,9 @@
           <label for="address">العنوان:</label>
           <input type="text" id="address" placeholder="اكتب العنوان" required>
 
+          <label for="region">المنطقة / الحي:</label>
+          <input type="text" id="region" placeholder="اكتب المنطقة / الحي" required>
+
           <label for="phone">رقم التليفون:</label>
           <input type="text" id="phone" placeholder="اكتب رقم التليفون" required>
 
@@ -39,53 +43,6 @@
 
           <label for="confessionFather">اب الاعتراف:</label>
           <input type="text" id="confessionFather" placeholder="اكتب اسم الاب الاعتراف" required>
-
-          <label>اخد بركة / لم ياخد:</label>
-          <input type="radio" name="blessing" value="Received" required> اخد بركة
-          <input type="radio" name="blessing" value="Not Received" required> لم ياخد
-
-          <label for="blessingDate">تاريخ البركة:</label>
-          <input type="date" id="blessingDate">
-
-<div class="form-group">
-                    <label for="ballNotes">ملاحظات إضافية:</label>
-                    <textarea id="ballNotes" placeholder="أدخل أي ملاحظات إضافية حول البركة"></textarea>
-                </div>
-               
-              
-                <div id="membersContainer">
-                    <h3>أعضاء العائلة</h3>
-                    <div class="member" data-index="0">
-                        <div class="form-group">
-                            <label>الاسم:</label>
-                            <input type="text" class="memberName" placeholder="أدخل اسم العضو" required>
-                        </div>
-                        <div class="form-group">
-                            <label>الدور:</label>
-                            <select class="memberRole" title="اختر دور العضو" required>
-                                <option value="father">الأب</option>
-                                <option value="mother">الأم</option>
-                                <option value="son">الابن</option>
-                                <option value="daughter">الابنة</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>رقم الهاتف:</label>
-                            <input type="tel" class="memberPhone" placeholder="أدخل رقم الهاتف">
-                        </div>
-                        <div class="form-group">
-                            <label>الرقم الوطني:</label>
-                            <input type="text" class="memberNationalId" placeholder="أدخل الرقم الوطني">
-                        </div>
-                        <div class="form-group">
-                            <label>تاريخ الميلاد:</label>
-                            <input type="date" class="memberDob" placeholder="اختر تاريخ الميلاد">
-                        </div>
-                        <button type="button" class="removeMemberBtn" title="إزالة العضو"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-                <button type="button" id="addMemberBtn" class="btn-secondary"><i class="fas fa-plus"></i> إضافة عضو</button>
-
 
           <div class="form-buttons">
               <button type="submit" id="saveBtn">حفظ</button>
